@@ -36,8 +36,8 @@ JSVector.addGetNew = function(vec1, vec2){
 }
 
 JSVector.prototype.sub = function(vec){
-  this.x-=vec.x||0;
-  this.y-=vec.y||0;
+  this.x-=vec.x;
+  this.y-=vec.y;
 }
 
 JSVector.subGetNew = function(vec1, vec2){
@@ -47,13 +47,13 @@ JSVector.subGetNew = function(vec1, vec2){
 }
 
 JSVector.prototype.mult = function(a){
-  this.x*=a||0;
-  this.y*=a||0;
+  this.x*=a;
+  this.y*=a;
 }
 
 JSVector.prototype.div = function(a){
-  this.x/=a||0;
-  this.y/=a||0;
+  this.x/=a;
+  this.y/=a;
 }
 
 JSVector.prototype.normalize = function(){

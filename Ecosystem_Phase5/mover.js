@@ -8,9 +8,9 @@ function Mover(){
 
 Mover.prototype.update = function(){
   this.vel.add(this.acc);
+  this.vel.limit(4);
   this.loc.add(this.vel);
   this.acc.mult(0);
-  this.vel.limit(10);
   if(this.loc.x + this.rad >= canvas.width || this.loc.x - this.rad <= 0){
     //this.loc.x = canvas.width-this.loc.x;
     this.vel.x = -(this.vel.x);
