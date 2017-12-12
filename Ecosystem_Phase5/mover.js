@@ -1,5 +1,5 @@
 function Mover(){
-  this.rad = 25
+  this.rad = 10;
   this.loc = new JSVector((Math.random()*canvas.width-(2*this.rad))+this.rad, (Math.random()*canvas.height-(2*this.rad))+this.rad);
   this.vel = new JSVector(Math.random()*10, Math.random()*10);
   this.acc = new JSVector(0, 0);

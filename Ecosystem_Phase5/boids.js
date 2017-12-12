@@ -1,12 +1,12 @@
 function Boid(id, loc){
   this.acc = new JSVector(0, 0);
-  this.vel = new JSVector(Math.random()*8-5, Math.random()*8-5);
+  this.vel = new JSVector((Math.random()*3)-1.5, (Math.random()*3)-1.5);
   this.id = id;
   this.loc = loc;
   this.maxSpeed = 2;
   this.maxForce = 1;
-  this.lifespan = 40000.0;
-  this.rad = Math.random()*5+6;
+  this.lifespan = 4000.0;
+  this.rad = 30;
   this.star = 'rgba(' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ',';
   this.flock = function(boids){
     var sep = this.seperate(boids);
@@ -15,7 +15,7 @@ function Boid(id, loc){
 
     sep.mult(0.2);
     ali.mult(0.075);
-    coh.mult(0.005);
+    coh.mult(0.05);
 
     this.applyForce(sep);
     this.applyForce(ali);
@@ -41,7 +41,7 @@ Boid.prototype.update = function(){
 }
 
 Boid.prototype.render = function(){
-  this.c = this.star + this.lifespan/40000.0 + ')';
+  this.c = this.star + this.lifespan/4000.0 + ')';
   ctx.strokeStyle = this.c;
   ctx.fillStyle = this.c;
   ctx.save();

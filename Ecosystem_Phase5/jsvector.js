@@ -57,8 +57,9 @@ JSVector.prototype.div = function(a){
 }
 
 JSVector.prototype.normalize = function(){
-  this.x/=this.getMag();
-  this.y/=this.getMag();
+  var mag = this.getMag();
+  this.x/=mag;
+  this.y/=mag;
 }
 
 JSVector.prototype.limit = function(lim){
@@ -90,7 +91,10 @@ JSVector.prototype.copy = function(){
 }
 
 JSVector.prototype.rotate = function(a){
-  return Math.atan2(this.y, this.x) + a;
+  var dx = this.x*Math.cos(a) - this.y*Math.sin(a);
+  var dy = this.x*Math.sin(a) + this.y*Math.cos(a);
+  this.x = dx;
+  this.y = dy;
 }
 
 JSVector.prototype.dot = function(){

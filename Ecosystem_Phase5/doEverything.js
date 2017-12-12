@@ -20,7 +20,7 @@ function init(){
   canvas.style.backgroundColor = 'rgba(' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ',' + Math.random() + ')';
   // get the context
   ctx = canvas.getContext('2d'); // This is the context
-  for (var i = 0; i < 3; i++){
+  for (var i = 0; i < 20; i++){
     flock.addBoid(new Boid(i, new JSVector(Math.random()*canvas.width, Math.random()*canvas.height)));
   }
   canvas.addEventListener('mousemove', function(event){
@@ -44,12 +44,16 @@ function animate(){
   requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   k++;
+  if (k === 50){
+    flock.addBoid(new Boid(i, new JSVector(canvas.width/2, canvas.height/2)));
+    //flock.addBoid(new Boid(i, new JSVector(snake.segs[snake.segs.length-1].x, snake.segs[snake.segs.length-1].y)));
+    // for (var i = 0; i < flock.boids.length; i++){
+    //   flock.addBoid(new Boid(i, new JSVector(flock.boids[i].loc.x, flock.boids[i].loc.y)));
+    // }
+    k = 0;
+  }
   // Looping through backwards to delete
   for (var i = flock.boids.length-1; i >= 0; i--) {
-    if (k === -50){
-      flock.addBoid(new Boid(i, new JSVector(canvas.width/2, canvas.height/2)));
-      k = 0;
-    }
     var boid = flock.boids[i];
     boid.update();
     boid.render();
@@ -65,8 +69,8 @@ function animate(){
       mover.applyForce(f);
     }
   }
-  // mover.update();
-  // mover.render();
+  mover.update();
+  mover.render();
   for(var j = 0; j < flock.boids.length; j++){
     var boid= flock.boids[j];
     var distance = boid.loc.distance(mover.loc)
@@ -77,10 +81,10 @@ function animate(){
       boid.applyForce(f);
     }
   }
-  // orb.update();
-  // orb.render();
-  // snake.update();
-  // snake.render();
+  orb.update();
+  orb.render();
+  snake.update();
+  snake.render();
   for(var j = flock.boids.length-1; j >= 0; j--){
     var boid = flock.boids[j];
     var distance = boid.loc.distance(JSVector.addGetNew(mover.loc, orb.loc));

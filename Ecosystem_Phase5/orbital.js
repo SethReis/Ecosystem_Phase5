@@ -1,4 +1,5 @@
 function Orb(){
+  this.movement = 0;
   this.loc = new JSVector(100, 0);
   this.rad = 25;
   this.c = 'rgba(' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ',' + Math.random() + ')';
@@ -9,7 +10,19 @@ function Orb(){
 Orb.prototype.update = function(){
   this.theta += this.angvel;
   this.loc.setDirection(Math.sin(this.theta)*(3/2));
+  // if (this.loc.x === 100){
+  //   this.movement = 0;
+  // } else if (this.loc.x === -100){
+  //   this.movement = 1;
+  // }
+  // if (this.movement === 0){
+  //   this.loc.x -= 2;
+  // } else if (this.movement ===1){
+  //   this.loc.x += 2;
+  // }
 }
+
+
 
 Orb.prototype.render = function(){
   // ctx.beginPath();
